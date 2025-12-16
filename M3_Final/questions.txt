@@ -1,0 +1,215 @@
+========================================
+INTENT 1: player_stats
+Cypher: Player aggregated stats (points, goals, assists, minutes, form)
+========================================
+
+WORKING QUESTION:
+Show Mohamed Salah’s stats in the 2022-23 season.
+
+WHY IT WORKS:
+- Player exists
+- Season exists
+- Cypher aggregates stats correctly
+
+NON-WORKING QUESTION:
+Show Lionel Messi’s stats in the 2022-23 season.
+
+WHY IT FAILS:
+- Player does not exist in the FPL knowledge graph
+
+
+========================================
+INTENT 2: top_players
+Cypher: Top players by total points
+========================================
+
+WORKING QUESTION:
+Who are the top 10 players in the 2022-23 season?
+
+WHY IT WORKS:
+- Season exists
+- No extra constraints needed
+
+NON-WORKING QUESTION:
+Who are the top 10 players in the 2018-19 season?
+
+WHY IT FAILS:
+- Season not present in the dataset
+
+
+========================================
+INTENT 3: best_by_position
+Cypher: Best players by position
+========================================
+
+WORKING QUESTION:
+Who are the best defenders in the 2022-23 season?
+
+WHY IT WORKS:
+- Position = DEF
+- Season exists
+
+NON-WORKING QUESTION:
+Who are the best wing-backs in the 2022-23 season?
+
+WHY IT FAILS:
+- “Wing-back” is not a valid FPL position (GKP, DEF, MID, FWD only)
+
+
+========================================
+INTENT 4: compare_players
+Cypher: Compare two players’ performance
+========================================
+
+WORKING QUESTION:
+Compare Mohamed Salah vs Kevin De Bruyne in the 2022-23 season.
+
+WHY IT WORKS:
+- Two valid players
+- Season exists
+
+NON-WORKING QUESTION:
+Compare Mohamed Salah vs Cristiano Ronaldo in the 2022-23 season.
+
+WHY IT FAILS:
+- Cristiano Ronaldo not present in this dataset
+
+
+========================================
+INTENT 5: team_fixtures
+Cypher: Fixtures for a specific team. 
+========================================
+
+WORKING QUESTION:
+Show Liverpool’s fixtures in the 2022-23 season.
+
+WHY IT WORKS:
+- Team exists
+- Season exists
+
+NON-WORKING QUESTION:
+Show Barcelona’s fixtures in the 2022-23 season.
+
+WHY IT FAILS:
+- Team not in Premier League / FPL dataset
+
+
+========================================
+INTENT 6: gameweek_fixtures
+Cypher: Fixtures in a specific gameweek 
+========================================
+
+WORKING QUESTION:
+Show fixtures in GW 8 of the 2022-23 season.
+
+WHY IT WORKS:
+- Valid season
+- Valid gameweek
+
+NON-WORKING QUESTION:
+Show fixtures in GW 50 of the 2022-23 season. (adjust)
+
+WHY IT FAILS:
+- Gameweek does not exist
+
+
+========================================
+INTENT 7: playerclean_sheets
+Cypher: Team clean sheet appearances ( no work)
+========================================
+
+WORKING QUESTION:
+How many clean sheets did Alisson keep in the 2022-23 season?
+
+WHY IT WORKS:
+- Team exists
+- Clean sheets stored at player-fixture level
+
+NON-WORKING QUESTION:
+How many clean sheets did Liverpool keep in the 2022-23 season?
+
+WHY IT FAILS:
+- Team not in dataset
+
+
+========================================
+INTENT 8: player_form
+Cypher: Average form + total points
+========================================
+
+WORKING QUESTION:
+What was Mohamed Salah’s form in the 2022-23 season?
+
+WHY IT WORKS:
+- Player exists
+- Form attribute exists
+
+NON-WORKING QUESTION:
+What was Mohamed Salah’s form in the 2019-20 season?
+
+WHY IT FAILS:
+- Season not available
+
+
+========================================
+INTENT 9: player_discipline
+Cypher: Yellow & red cards
+========================================
+
+WORKING QUESTION:
+How many yellow and red cards did Mateo Kovacic receive in 2022-23?
+
+WHY IT WORKS:
+- Player exists
+- Discipline stats exist
+
+NON-WORKING QUESTION:
+How many fouls did Ben Davies commit in 2022-23?
+
+WHY IT FAILS:
+- “Fouls” is not a stored property in the KG
+
+
+========================================
+INTENT 10: goalkeeper_stats
+Cypher: Saves & penalties saved
+========================================
+
+WORKING QUESTION:
+How many saves did Alisson make in the 2022-23 season?
+
+WHY IT WORKS:
+- Player is a goalkeeper
+- Saves property exists
+
+NON-WORKING QUESTION:
+How many saves did Mohamed Salah make in the 2022-23 season?
+
+WHY IT FAILS:
+- Player is not a goalkeeper
+- Saves not meaningful for this player
+
+
+========================================
+INTENT 11: recommendation
+Cypher: Top players by position (simple recommendation)
+========================================
+
+WORKING QUESTION:
+Recommend the best midfielders for the 2022-23 season.
+
+WHY IT WORKS:
+- Position exists
+- Season exists
+
+NON-WORKING QUESTION:
+Recommend the best referees for the 2022-23 season.
+
+WHY IT FAILS:
+- Referees are not entities in the KG
+
+
+Hawel lakhbato:
+
+Top performers in 2022-23 --> right
+

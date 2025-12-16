@@ -1,0 +1,68 @@
+run_type,retrieval_type,embedding_model,llm_model,test_case,expected_behavior,observed_result,status,notes
+ACTUAL,Baseline,mpnet,llama3.1:8b,player_stats_working,Answer with correct stats,PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,player_stats_nonworking,"I don't know (player missing)",PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,top_players_working,Return top 10 list,PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,top_players_nonworking,"I don't know (season missing)",PASS,PASS,"(May pass due to query fallback if season missing)"
+ACTUAL,Baseline,mpnet,llama3.1:8b,best_by_position_working,Return top by position,PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,best_by_position_nonworking,"I don't know (invalid position)",PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,compare_players_working,Compare 2 players,PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,compare_players_nonworking,"I don't know (player missing)",PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,team_fixtures_working,Return team fixtures,PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,team_fixtures_nonworking,"I don't know (team missing)",PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,gameweek_fixtures_working,Return GW fixtures,PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,gameweek_fixtures_nonworking,"I don't know (GW invalid)",FAIL,FAIL,"Likely because query fallback returns fixtures even when GW invalid"
+ACTUAL,Baseline,mpnet,llama3.1:8b,player_clean_sheets_working,Return clean sheets,PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,player_clean_sheets_nonworking,"I don't know (team question / invalid entity)",PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,player_form_working,Return avg form,PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,player_form_nonworking,"I don't know (season missing)",PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,player_discipline_working,Return cards,PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,player_discipline_nonworking,"I don't know (unsupported stat)",PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,goalkeeper_stats_working,Return saves,PASS,PASS,
+ACTUAL,Baseline,mpnet,llama3.1:8b,goalkeeper_stats_nonworking,"I don't know (not a GK)",PASS,PASS,
+
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,player_stats_working,Answer with correct stats,PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,player_stats_nonworking,"I don't know (player missing)",PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,top_players_working,Return top 10 list,PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,top_players_nonworking,"I don't know (season missing)",PASS,PASS,"(May pass due to query fallback if season missing)"
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,best_by_position_working,Return top by position,PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,best_by_position_nonworking,"I don't know (invalid position)",PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,compare_players_working,Compare 2 players,PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,compare_players_nonworking,"I don't know (player missing)",PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,team_fixtures_working,Return team fixtures,FAIL,FAIL,"Model sometimes ignores/changes fixture formatting or misses some rows"
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,team_fixtures_nonworking,"I don't know (team missing)",PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,gameweek_fixtures_working,Return GW fixtures,PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,gameweek_fixtures_nonworking,"I don't know (GW invalid)",FAIL,FAIL,"Same fallback issue: non-empty query results causes evaluator to fail"
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,player_clean_sheets_working,Return clean sheets,PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,player_clean_sheets_nonworking,"I don't know (team question / invalid entity)",PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,player_form_working,Return avg form,PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,player_form_nonworking,"I don't know (season missing)",FAIL,FAIL,"Likely answered using fallback (no season) instead of 'I don't know'"
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,player_discipline_working,Return cards,PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,player_discipline_nonworking,"I don't know (unsupported stat)",PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,goalkeeper_stats_working,Return saves,PASS,PASS,
+ACTUAL,Baseline,mpnet,gemma-3-4b-it,goalkeeper_stats_nonworking,"I don't know (not a GK)",FAIL,FAIL,"Model sometimes summarizes '0 saves' instead of refusing"
+
+ACTUAL,Baseline,mpnet,gemini-2.5-flash,player_stats_working,Answer with correct stats,PASS,PASS,
+ACTUAL,Baseline,mpnet,gemini-2.5-flash,player_stats_nonworking,"I don't know (player missing)",PASS,PASS,
+ACTUAL,Baseline,mpnet,gemini-2.5-flash,top_players_working,Return top 10 list,PASS,PASS,
+ACTUAL,Baseline,mpnet,gemini-2.5-flash,top_players_nonworking,"I don't know (season missing)",PASS,PASS,"(May pass due to query fallback if season missing)"
+ACTUAL,Baseline,mpnet,gemini-2.5-flash,best_by_position_working,Return top by position,PASS,PASS,
+ACTUAL,Baseline,mpnet,gemini-2.5-flash,best_by_position_nonworking,"I don't know (invalid position)",PASS,PASS,
+ACTUAL,Baseline,mpnet,gemini-2.5-flash,compare_players_working,Compare 2 players,CRASH,NOT_RUN,"Run stopped here due to Gemini quota/limit"
+
+PROJECTED,Baseline,mpnet,gemini-2.5-flash,compare_players_nonworking,"I don't know (player missing)",N/A,NOT_RUN,
+PROJECTED,Baseline,mpnet,gemini-2.5-flash,team_fixtures_working,Return team fixtures,N/A,NOT_RUN,
+PROJECTED,Baseline,mpnet,gemini-2.5-flash,team_fixtures_nonworking,"I don't know (team missing)",N/A,NOT_RUN,
+PROJECTED,Baseline,mpnet,gemini-2.5-flash,gameweek_fixtures_working,Return GW fixtures,N/A,NOT_RUN,
+PROJECTED,Baseline,mpnet,gemini-2.5-flash,gameweek_fixtures_nonworking,"I don't know (GW invalid)",N/A,NOT_RUN,
+PROJECTED,Baseline,mpnet,gemini-2.5-flash,player_clean_sheets_working,Return clean sheets,N/A,NOT_RUN,
+PROJECTED,Baseline,mpnet,gemini-2.5-flash,player_clean_sheets_nonworking,"I don't know (team question / invalid entity)",N/A,NOT_RUN,
+PROJECTED,Baseline,mpnet,gemini-2.5-flash,player_form_working,Return avg form,N/A,NOT_RUN,
+PROJECTED,Baseline,mpnet,gemini-2.5-flash,player_form_nonworking,"I don't know (season missing)",N/A,NOT_RUN,
+PROJECTED,Baseline,mpnet,gemini-2.5-flash,player_discipline_working,Return cards,N/A,NOT_RUN,
+PROJECTED,Baseline,mpnet,gemini-2.5-flash,player_discipline_nonworking,"I don't know (unsupported stat)",N/A,NOT_RUN,
+PROJECTED,Baseline,mpnet,gemini-2.5-flash,goalkeeper_stats_working,Return saves,N/A,NOT_RUN,
+PROJECTED,Baseline,mpnet,gemini-2.5-flash,goalkeeper_stats_nonworking,"I don't know (not a GK)",N/A,NOT_RUN,
+
+PROJECTED,Embedding,mpnet,ALL_MODELS,ALL_TESTS,"Embedding-based answers tend to be less reliable than baseline",N/A,NOT_RUN,"Use screenshots: mpnet/minilm retrieved wrong/partial players (e.g., 0-point players)"
+PROJECTED,Embedding,minilm,ALL_MODELS,ALL_TESTS,"MiniLM faster but tends to return fewer/less accurate matches",N/A,NOT_RUN,"Use screenshots: only 4 players returned vs expected 10"
+PROJECTED,Hybrid,mpnet,ALL_MODELS,ALL_TESTS,"Hybrid combines baseline correctness + embedding fallback; best overall",N/A,NOT_RUN,"Explain in slides: baseline used for correctness; embedding helps fuzzy matching"
